@@ -1,22 +1,26 @@
-let m = document.getElementById('m')
-let d = document.getElementById('d')
-let p = document.getElementById('p')
-let s = document.getElementById('s')
+let obj = {
+    init: function() {
+        document.getElementById('btn').addEventListener('click', this)
+        document.getElementById('btn').addEventListener('blur', this)
+        document.getElementById('btn').addEventListener('focus', this)
+    },
+    handleEvent: function(ev) {
+        switch (ev.type) {
+            case 'click':
+                this.showTypeOfEvent(ev)
+                break;
+            case 'focus':
+                this.showTypeOfEvent(ev)
+                break;
+            case 'blur':
+                this.showTypeOfEvent(ev)
+                break;
 
-let highlight = (ev) => {
-    let target = ev.currentTarget
-    target.classList.toggle('gold')
-    ev.stopImmediatePropagation()
+        }
+    },
+    showTypeOfEvent: function(ev) {
+        console.log(ev.type + 'ed');
+    }
 }
 
-// let reset = (_element) => {
-//     setTimeout(() => {
-//         _element.className = '';
-
-//     }, 2000)
-// }
-
-let arr = [m, d, p, s]
-arr.forEach(element => {
-    element.addEventListener('click', highlight)
-});
+obj.init()
