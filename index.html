@@ -1,59 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p{
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        p::after{
+            display: inline-block;
+            content: data-file;
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            color: rgba(0, 0, 0, .5);
+        }
+    </style>
     <title>Document</title>
 </head>
-
 <body>
-    <h1>creating events</h1>
-    <main style="background-color:aqua">
-
+    <header>
+        <h1>Audio Effects with JS</h1>
+    </header>
+    <main>
+        
     </main>
-    <script>
-        let born = new Event('born');
-        let died = new CustomEvent('died', {
-            detail: {
-                time: Date.now()
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            let m = document.querySelector('main')
-            addPara(m, 'this is a paragraph!')
-            addPara(m, 'a new starwars movie is coming soon!')
-            m.addEventListener('click', function(ev) {
-                removePra(m, m.firstElementChild)
-            })
-        })
-
-        function addPara(parent, txt) {
-            let p = document.createElement('p')
-            p.textContent = txt;
-            p.addEventListener('born', wasBorn)
-            p.addEventListener('died', hasDied)
-            p.dispatchEvent(born)
-            parent.appendChild(p)
-        }
-
-        function removePra(parent, p) {
-            p.dispatchEvent(died)
-            parent.removeChild(p)
-        }
-
-        function wasBorn(ev) {
-            console.log(ev.type, ev.target);
-        }
-
-        function hasDied(ev) {
-            console.log(ev.type, ev.target, ev.detail.time);
-            ev.target.removeEventListener('born', wasBorn)
-            ev.target.removeEventListener('died', hasDied)
-        }
-    </script>
 </body>
-
 </html>

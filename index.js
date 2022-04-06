@@ -1,26 +1,20 @@
-let obj = {
-    init: function() {
-        document.getElementById('btn').addEventListener('click', this)
-        document.getElementById('btn').addEventListener('blur', this)
-        document.getElementById('btn').addEventListener('focus', this)
-    },
-    handleEvent: function(ev) {
-        switch (ev.type) {
-            case 'click':
-                this.showTypeOfEvent(ev)
-                break;
-            case 'focus':
-                this.showTypeOfEvent(ev)
-                break;
-            case 'blur':
-                this.showTypeOfEvent(ev)
-                break;
+let h1 = document.querySelector('h1')
 
-        }
-    },
-    showTypeOfEvent: function(ev) {
-        console.log(ev.type + 'ed');
-    }
-}
+h1.addEventListener('click',(ev)=>{
 
-obj.init()
+    console.log('client=>', ev.clientX, ev.clientY);
+    console.log('page=>',ev.pageX, ev.pageY);
+    console.log('offset=>',ev.offsetX, ev.offsetY);
+    
+    window.scrollBy(0, 600)
+})
+
+window.addEventListener('scroll', (ev)=>{
+    console.log('client=>', ev.clientX, ev.clientY);
+    console.log('page=>',ev.pageX, ev.pageY);
+    console.log('offset=>',ev.offsetX, ev.offsetY);
+    console.log('window=>',ev.screenX, ev.screenY);
+    setTimeout(() => {
+        window.scrollTo(0,0)
+    }, 2000);
+})
